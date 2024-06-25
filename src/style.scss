@@ -1,0 +1,206 @@
+$bg-default-color: rgb(255, 255, 255);
+$bg-default-color-hover: rgb(229, 231, 233);
+$text-default-color: rgb(107, 114, 128);
+$border-default-color: rgb(178, 186, 187);
+
+$dark-bg-default-color: rgb(24, 24, 24);
+$dark-bg-default-color-hover: rgb(39, 39, 42);
+$dark-text-default-color: rgb(229, 231, 235);
+$dark-border-default-color: rgb(72, 72, 72);
+
+:root {
+  --bg-default-color: #{$bg-default-color};
+  --bg-default-color-hover: #{$bg-default-color-hover};
+  --text-default-color: #{$text-default-color};
+  --border-default-color: #{$border-default-color};
+}
+
+:root.dark {
+  --bg-default-color: #{$dark-bg-default-color};
+  --bg-default-color-hover: #{$dark-bg-default-color-hover};
+  --text-default-color: #{$dark-text-default-color};
+  --border-default-color: #{$dark-border-default-color};
+}
+
+.contextmenu {
+  position: fixed;
+  width: 200px;
+  left: 0;
+  top: calc(100% + 10px);
+  border-radius: 4px;
+  border: solid 1px var(--border-default-color);
+  background-color: var(--bg-default-color);
+  padding: 10px 0;
+  z-index: 99;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+
+  &__item {
+    font-size: 16px;
+    display: block;
+    text-decoration: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    user-select: none;
+    transition: 0.2s;
+    position: relative;
+    margin-bottom: 2px;
+
+    &:hover:not(&--disabled) {
+      background-color: var(--bg-default-color-hover);
+    }
+
+    &--disabled {
+      opacity: 0.5;
+      cursor: no-drop;
+    }
+  }
+
+  .submenu {
+    position: relative;
+
+    &:hover {
+      & > .contextmenu__item {
+        background-color: var(--bg-default-color-hover);
+      }
+    }
+
+    &__item {
+      position: absolute;
+      top: 0;
+      left: 100%;
+      width: 100%;
+      border: solid 1px var(--border-default-color);
+      background-color: var(--bg-default-color);
+      border-radius: 4px;
+      padding: 5px 0;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    & > .contextmenu__item {
+      &:after {
+        content: '';
+        border-style: solid;
+        border-width: 5px 8px;
+        border-color: transparent transparent transparent #000;
+        width: 0;
+        height: 0;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 0px;
+        transition: 0.2s;
+      }
+    }
+  }
+}
+
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 200ms;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 200ms;
+}
+
+.zoom-enter {
+  opacity: 0;
+  transform: scale(0.8);
+  transform-origin: top left;
+}
+
+.zoom-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 200ms, transform 200ms;
+  transform-origin: top left;
+}
+
+.zoom-exit {
+  opacity: 1;
+  transform: scale(1);
+  transform-origin: top left;
+}
+
+.zoom-exit-active {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 200ms, transform 200ms;
+  transform-origin: top left;
+}
+
+.toTopLeft-enter {
+  opacity: 0;
+  transform: translate(10px, 10px);
+}
+
+.toTopLeft-enter-active {
+  opacity: 1;
+  transform: translate(0px, 0px);
+  transition: opacity 200ms, transform 200ms;
+}
+
+.toTopLeft-exit {
+  opacity: 1;
+  transform: translate(0px, 0px);
+}
+
+.toTopLeft-exit-active {
+  opacity: 0;
+  transform: translate(10px, 10px);
+  transition: opacity 200ms, transform 200ms;
+}
+
+.rightToLeft-enter {
+  opacity: 0;
+  transform: translateX(10px);
+}
+
+.rightToLeft-enter-active {
+  opacity: 1;
+  transform: translateX(0px);
+  transition: opacity 200ms, transform 200ms;
+}
+
+.rightToLeft-exit {
+  opacity: 1;
+  transform: translateX(0px);
+}
+
+.rightToLeft-exit-active {
+  opacity: 0;
+  transform: translateX(10px);
+  transition: opacity 200ms, transform 200ms;
+}
+
+.pop-enter {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.pop-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 200ms, transform 200ms;
+}
+
+.pop-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.pop-exit-active {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 200ms, transform 200ms;
+}

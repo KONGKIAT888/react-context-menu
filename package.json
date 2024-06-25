@@ -1,0 +1,157 @@
+{
+    "name": "@type/react-context-menu",
+    "version": "1.1.0",
+    "description": "Context Menu for React",
+    "repository": "KONGKIAT888/react-context-menu-type",
+    "author": "KONGKIAT888 <kongkiat.9639@gmail.com>",
+    "license": "MIT",
+    "private": false,
+    "main": "dist/index.js",
+    "module": "dist/index.es.js",
+    "jsnext:main": "dist/index.es.js",
+    "typings": "src/index.d.ts",
+    "homepage": "https://github.com/KONGKIAT888/react-context-menu-type",
+    "bugs": {
+        "url": "https://github.com/KONGKIAT888/react-context-menu-ts/issues"
+    },
+    "dependencies": {
+        "@testing-library/jest-dom": "^5.14.1",
+        "@testing-library/react": "^13.0.0",
+        "@testing-library/user-event": "^13.2.1",
+        "@types/jest": "^29.5.12",
+        "@types/node": "^20.14.8",
+        "@types/react": "^18.3.3",
+        "@types/react-dom": "^18.3.0",
+        "classnames": "^2.3.2",
+        "postcss": "^8.4.21",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "react-scripts": "5.0.1",
+        "react-transition-group": "^4.4.5",
+        "rollup-plugin-postcss": "^4.0.2",
+        "typescript": "^5.5.2",
+        "web-vitals": "^2.1.0"
+    },
+    "devDependencies": {
+        "@svgr/rollup": "^6.5.1",
+        "@types/jest": "^29.5.12",
+        "@types/node": "^20.14.8",
+        "@types/react": "^18.3.3",
+        "@types/react-dom": "^18.3.0",
+        "@types/react-transition-group": "^4.4.10",
+        "@typescript-eslint/eslint-plugin": "^7.13.1",
+        "@typescript-eslint/parser": "^7.13.1",
+        "autoprefixer": "9.0.0",
+        "babel-core": "^7.0.0-bridge.0",
+        "babel-eslint": "^10.1.0",
+        "babel-jest": "^29.5.0",
+        "babel-plugin-external-helpers": "^6.22.0",
+        "babel-preset-env": "^1.7.0",
+        "babel-preset-react": "^6.24.1",
+        "babel-preset-stage-0": "^6.24.1",
+        "cross-env": "^7.0.3",
+        "enzyme": "^3.11.0",
+        "enzyme-adapter-react-16": "^1.15.7",
+        "eslint": "^8.36.0",
+        "eslint-config-airbnb": "^19.0.4",
+        "eslint-plugin-import": "^2.27.5",
+        "eslint-plugin-jsx-a11y": "^6.7.1",
+        "eslint-plugin-react": "^7.32.2",
+        "gh-pages": "^5.0.0",
+        "jest": "^29.5.0",
+        "jest-enzyme": "^7.1.2",
+        "node-gyp": "^v8.4.1",
+        "node-sass": "^9.0.0",
+        "parcel-bundler": "^1.12.4",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-test-renderer": "^18.2.0",
+        "rollup": "3.19.1",
+        "rollup-plugin-babel": "^4.4.0",
+        "rollup-plugin-commonjs": "^10.1.0",
+        "rollup-plugin-css-only": "^4.3.0",
+        "rollup-plugin-node-externals": "^5.1.2",
+        "rollup-plugin-node-resolve": "^5.2.0",
+        "rollup-plugin-peer-deps-external": "^2.2.4",
+        "rollup-plugin-replace": "^2.2.0",
+        "rollup-plugin-sass": "^1.12.19",
+        "rollup-plugin-terser": "^7.0.2",
+        "rollup-plugin-typescript2": "^0.36.0",
+        "rollup-plugin-url": "^3.0.1",
+        "sass": "^1.59.2",
+        "source-map-explorer": "^2.5.3",
+        "ts-jest": "^29.1.5",
+        "typescript": "^5.5.2"
+    },
+    "scripts": {
+        "dev": "react-scripts start",
+        "clean": "rimraf ./dist",
+        "start": "parcel example/public/index.html",
+        "build": "npm run clean && tsc && rollup -c --bundleConfigAsCjs",
+        "build:example": "npm run clean && parcel build example/public/index.html --public-url ./",
+        "predeploy": "npm run build:example",
+        "deploy": "gh-pages -d dist",
+        "lint": "eslint ./src",
+        "test": "jest --verbose",
+        "test:coverage": "jest --verbose --coverage",
+        "prepublish": "npm run build",
+        "analyze": "source-map-explorer 'dist/*.js'"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "peerDependencies": {
+        "react": ">=16.8.0",
+        "react-dom": ">=16.8.0"
+    },
+    "files": [
+        "dist",
+        "src/index.d.ts"
+    ],
+    "alias": {
+        "example": "./example",
+        "src": "./src"
+    },
+    "jest": {
+        "setupFilesAfterEnv": [
+            "./setupTests.js"
+        ],
+        "coverageThreshold": {
+            "global": {
+                "branches": 80,
+                "functions": 80,
+                "lines": 80,
+                "statements": -10
+            }
+        },
+        "testRegex": "./src/tests/.*.js$"
+    },
+    "keywords": [
+        "react",
+        "contextmenu",
+        "react-contextmenu",
+        "react-context-menu",
+        "react-component",
+        "right click",
+        "react context menu",
+        "react right click menu",
+        "right click menu",
+        "window right click menu",
+        "browser right click menu"
+    ]
+}
