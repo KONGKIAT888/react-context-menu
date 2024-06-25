@@ -32,18 +32,18 @@ Context menu plugin for React.
 ## Installation
 
 ```npm
-$ npm install --save @type/react-context-menu
+$ npm install --save @kongkiat/react-context-menu
 ```
 
 ```yarn
-$ yarn add @type/react-context-menu
+$ yarn add @kongkiat/react-context-menu
 ```
 
 ## Sample Usage
 
 ```tsx
 import React from 'react';
-import { ContextMenuTrigger, ContextMenu, ContextMenuItem, Submenu } from '@type/react-context-menu';
+import { ContextMenuTrigger, ContextMenu, ContextMenuItem, Submenu } from '@kongkiat/react-context-menu';
 
 function App() {
 

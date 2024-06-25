@@ -1,4 +1,4 @@
-declare module 'react-context-menu-ts' {
+declare module '@kongkiat/react-context-menu' {
     import { ReactNode } from 'react';
     import * as React from 'react';
     export interface ContextMenu {
