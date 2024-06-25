@@ -1,8 +1,7 @@
 {
-    "name": "@type/react-context-menu",
+    "name": "@kongkiat/react-context-menu",
     "version": "1.1.0",
     "description": "Context Menu for React",
-    "repository": "KONGKIAT888/react-context-menu-type",
     "author": "KONGKIAT888 <kongkiat.9639@gmail.com>",
     "license": "MIT",
     "private": false,
@@ -10,9 +9,9 @@
     "module": "dist/index.es.js",
     "jsnext:main": "dist/index.es.js",
     "typings": "src/index.d.ts",
-    "homepage": "https://github.com/KONGKIAT888/react-context-menu-type",
+    "homepage": "https://github.com/KONGKIAT888/react-context-menu",
     "bugs": {
-        "url": "https://github.com/KONGKIAT888/react-context-menu-ts/issues"
+        "url": "https://github.com/KONGKIAT888/react-context-menu/issues"
     },
     "dependencies": {
         "@testing-library/jest-dom": "^5.14.1",
