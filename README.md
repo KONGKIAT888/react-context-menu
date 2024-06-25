@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/@kongkiat%2Freact-context-menu.svg)](https://badge.fury.io/js/@kongkiat%2Freact-context-menu)
+
 ### Note:
 
 `react-context-menu` Supports React `16.8` and above versions because this plugin solely uses React Hooks.
