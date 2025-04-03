@@ -10,9 +10,10 @@ export interface ContextMenuTriggerProps {
     className?: string,
     children?: ReactNode
     disableWhileShiftPressed?: boolean;
+    onClick?: (event: React.MouseEvent<ElementType, MouseEvent>) => void;
 }
 
-const ContextMenuTrigger: React.FC<ContextMenuTriggerProps> = ({ as: Component = 'div', children, id, disableWhileShiftPressed, attributes, disable, className }) => {
+const ContextMenuTrigger: React.FC<ContextMenuTriggerProps> = ({ as: Component = 'div', children, id, disableWhileShiftPressed, attributes, disable, className, onClick }) => {
     const menuTrigger = useRef<HTMLDivElement>(null);
 
     const handleContextMenu = useCallback((e: React.MouseEvent<ElementType, MouseEvent>) => {
@@ -41,6 +42,7 @@ const ContextMenuTrigger: React.FC<ContextMenuTriggerProps> = ({ as: Component =
             className={classnames('menu-trigger', className)}
             ref={menuTrigger}
             {...attributes}
+            onClick={(e: React.MouseEvent<ElementType, MouseEvent>) => onClick && onClick(e)}
             onContextMenu={(e: React.MouseEvent<ElementType, MouseEvent>) => handleContextMenu(e)}
         >
             {children}

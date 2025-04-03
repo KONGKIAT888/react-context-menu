@@ -43,6 +43,7 @@ declare module '@kongkiat/react-context-menu' {
         className?: string,
         children?: ReactNode
         disableWhileShiftPressed?: boolean;
+        onClick?: (event: React.MouseEvent<ElementType, MouseEvent>) => void;
     }
 
     export interface SubmenuProps {

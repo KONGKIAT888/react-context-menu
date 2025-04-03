@@ -205,6 +205,12 @@ export default App;
       <td>true / false. <strong>Default: false</strong></td>
       <td>Open browser default contextmenu if shift pressed while right click on trigger element.</td>
     </tr>
+    <tr>
+      <td>onClick</td>
+      <td>Function</td>
+      <td>() => {}</td>
+      <td>Fire onClick event.</td>
+    </tr>
   </tbody>
 </table>
 

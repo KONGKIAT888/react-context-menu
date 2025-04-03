@@ -8,7 +8,7 @@ function App() {
 
     return (
         <div className="app">
-            <ContextMenuTrigger id="context-menu-1">
+            <ContextMenuTrigger id="context-menu-1" onClick={() => console.log('ContextMenuTrigger')}>
                 <div className="box">
                     Right Click On Me
                 </div>
