@@ -1,6 +1,6 @@
 {
     "name": "@kongkiat/react-context-menu",
-    "version": "1.1.4",
+    "version": "1.1.5",
     "description": "Context Menu for React",
     "author": "KONGKIAT888 <kongkiat.9639@gmail.com>",
     "license": "MIT",
@@ -85,7 +85,7 @@
     "scripts": {
         "dev": "react-scripts start",
         "clean": "rimraf ./dist",
-        "start": "parcel example/public/index.html",
+        "start": "parcel example/index.html",
         "build": "npm run clean && tsc && rollup -c --bundleConfigAsCjs",
         "build:example": "npm run clean && parcel build example/public/index.html --public-url ./",
         "predeploy": "npm run build:example",

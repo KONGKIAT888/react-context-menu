@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { ReactNode, useRef } from 'react';
 import CSSTransition from 'react-transition-group/CSSTransition';
 
-interface AnimateComponentProps {
-    children: React.ReactNode;
+export interface AnimateComponentProps {
+    children: ReactNode;
     isVisible: boolean;
     timeout: number;
     className: string;
 }
 
 const AnimateComponent: React.FC<AnimateComponentProps> = ({ children, isVisible, timeout, className }) => {
-    const nodeRef = React.useRef(null);
+    const nodeRef = useRef(null);
 
     return (
         <CSSTransition

@@ -24,30 +24,16 @@ $dark-border-default-color: rgb(72, 72, 72);
 
 .contextmenu {
   position: fixed;
-  width: 200px;
   left: 0;
   top: calc(100% + 10px);
-  border-radius: 4px;
-  border: solid 1px var(--border-default-color);
-  background-color: var(--bg-default-color);
-  padding: 10px 0;
-  z-index: 99;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
 
   &__item {
-    font-size: 16px;
     display: block;
-    text-decoration: none;
-    padding: 10px 15px;
     cursor: pointer;
     user-select: none;
     transition: 0.2s;
     position: relative;
-    margin-bottom: 2px;
-
-    &:hover:not(&--disabled) {
-      background-color: var(--bg-default-color-hover);
-    }
 
     &--disabled {
       opacity: 0.5;
@@ -58,21 +44,10 @@ $dark-border-default-color: rgb(72, 72, 72);
   .submenu {
     position: relative;
 
-    &:hover {
-      & > .contextmenu__item {
-        background-color: var(--bg-default-color-hover);
-      }
-    }
-
     &__item {
       position: absolute;
       top: 0;
       left: 100%;
-      width: 100%;
-      border: solid 1px var(--border-default-color);
-      background-color: var(--bg-default-color);
-      border-radius: 4px;
-      padding: 5px 0;
       opacity: 0;
       visibility: hidden;
     }
@@ -80,9 +55,6 @@ $dark-border-default-color: rgb(72, 72, 72);
     & > .contextmenu__item {
       &:after {
         content: '';
-        border-style: solid;
-        border-width: 5px 8px;
-        border-color: transparent transparent transparent #000;
         width: 0;
         height: 0;
         position: absolute;

@@ -1,29 +1,29 @@
-import React from 'react';
+import React, { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 import AnimateComponent from './AnimateComponent';
 import { callHideEvent, registerEvent } from './EventListener';
 import { throttle } from './Helper';
 
-interface ContextMenuProps {
-    children: React.ReactNode;
-    id: string;
-    appendTo?: string | null;
-    hideOnLeave?: boolean;
-    onMouseLeave?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
-    onHide?: () => void;
-    onShow?: () => void;
-    preventHideOnScroll?: boolean;
-    preventHideOnResize?: boolean;
-    attributes?: React.HTMLAttributes<HTMLDivElement>;
-    className?: string;
-    animation?: string;
+export interface ContextMenuProps {
+    id: string,
+    appendTo?: string,
+    animation?: 'fade' | 'zoom' | 'pop' | 'toTopLef' | 'rightToLeft',
+    hideOnLeave?: boolean,
+    attributes?: object,
+    className?: string,
+    children?: ReactNode,
+    preventHideOnResize?: boolean,
+    preventHideOnScroll?: boolean,
+    onShow?: { (event: any): void },
+    onHide?: { (event: any): void },
+    onMouseLeave?: { (event: any): void }
 }
 
 const ContextMenu: React.FC<ContextMenuProps> = ({ children, id, appendTo, hideOnLeave, preventHideOnResize, preventHideOnScroll, attributes, className, animation, onMouseLeave, onHide, onShow }) => {
-        const contextMenuEl = React.useRef<HTMLDivElement>(null);
-        const [isVisible, setVisible] = React.useState(false);
-        const [clientPosition, setClientPosition] = React.useState<{ clientX: number, clientY: number } | null>(null);
+        const contextMenuEl = useRef<HTMLDivElement>(null);
+        const [isVisible, setVisible] = useState(false);
+        const [clientPosition, setClientPosition] = useState<{ clientX: number, clientY: number } | null>(null);
 
         const showMenu = (e: { position: { clientX: number, clientY: number } }) => {
             const { position } = e;
@@ -33,10 +33,10 @@ const ContextMenu: React.FC<ContextMenuProps> = ({ children, id, appendTo, hideO
 
         const hideMenu = () => {
             setVisible(false);
-            if (onHide) onHide();
+            if (onHide) onHide(clientPosition);
         };
 
-        const handleMouseLeave = React.useCallback((e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        const handleMouseLeave = useCallback((e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
             e.preventDefault();
             if (onMouseLeave) onMouseLeave(e);
             if (hideOnLeave) callHideEvent(id);
@@ -67,7 +67,7 @@ const ContextMenu: React.FC<ContextMenuProps> = ({ children, id, appendTo, hideO
             callHideEvent(id);
         }, 200);
 
-        React.useEffect(() => {
+        useEffect(() => {
             registerEvent(id, showMenu, hideMenu);
 
             // detect click outside
@@ -94,7 +94,7 @@ const ContextMenu: React.FC<ContextMenuProps> = ({ children, id, appendTo, hideO
             };
         }, [id, preventHideOnScroll, preventHideOnResize, onScrollHideCallback, onResizeHideCallback]);
 
-        React.useEffect(() => {
+        useEffect(() => {
             if (isVisible && clientPosition && contextMenuEl.current) {
                 const { clientY, clientX } = clientPosition;
                 const { innerHeight: windowInnerHeight, innerWidth: windowInnerWidth } = window;
@@ -109,7 +109,7 @@ const ContextMenu: React.FC<ContextMenuProps> = ({ children, id, appendTo, hideO
                 contextMenuEl.current.style.top = `${newClientY + 2}px`;
                 contextMenuEl.current.style.left = `${newClientX + 2}px`;
 
-                if (onShow) onShow();
+                if (onShow) onShow(clientPosition);
             }
         }, [isVisible, clientPosition, onShow]);
 
@@ -130,7 +130,7 @@ const ContextMenu: React.FC<ContextMenuProps> = ({ children, id, appendTo, hideO
 
         const PortalContextComponent = () => (
             ReactDOM.createPortal(
-                <ContextComponent/>,
+                <ContextComponent />,
                 document.querySelector(appendTo!) as Element
             )
         );
@@ -142,10 +142,10 @@ const ContextMenu: React.FC<ContextMenuProps> = ({ children, id, appendTo, hideO
                     timeout={200}
                     className={animation}
                 >
-                    <PortalContextComponent/>
+                    <PortalContextComponent />
                 </AnimateComponent>
             ) : (
-                <PortalContextComponent/>
+                <PortalContextComponent />
             );
         }
 
@@ -155,9 +155,9 @@ const ContextMenu: React.FC<ContextMenuProps> = ({ children, id, appendTo, hideO
                 timeout={200}
                 className={animation}
             >
-                <ContextComponent/>
+                <ContextComponent />
             </AnimateComponent>
-        ) : <ContextComponent/>;
+        ) : <ContextComponent />;
     }
 ;
 

@@ -1,10 +1,18 @@
+import { HTMLAttributes, ReactNode } from 'react';
+
 declare module '@kongkiat/react-context-menu' {
-    import { ReactNode } from 'react';
     import * as React from 'react';
-    export interface ContextMenu {
+    export interface AnimateComponentProps {
+        children: ReactNode;
+        isVisible: boolean;
+        timeout: number;
+        className: string;
+    }
+
+    export interface ContextMenuProps {
         id: string,
         appendTo?: string,
-        animation?: string,
+        animation?: 'fade' | 'zoom' | 'pop' | 'toTopLef' | 'rightToLeft',
         hideOnLeave?: boolean,
         attributes?: object,
         className?: string,
@@ -16,7 +24,7 @@ declare module '@kongkiat/react-context-menu' {
         onMouseLeave?: { (event: any): void }
     }
 
-    export interface ContextMenuItem {
+    export interface ContextMenuItemProps extends HTMLAttributes<HTMLDivElement> {
         disabled?: boolean,
         preventClose?: boolean,
         disableWhileShiftPressed?: boolean,
@@ -26,23 +34,23 @@ declare module '@kongkiat/react-context-menu' {
         onClick?: { (event: any): void }
     }
 
-    export interface ContextMenuTrigger {
+    export interface ContextMenuTriggerProps {
         id: string,
         attributes?: object,
         disable?: boolean,
         className?: string,
         children?: ReactNode
+        disableWhileShiftPressed?: boolean;
     }
 
-    export interface Submenu {
+    export interface SubmenuProps {
         element: ReactNode,
         attributes?: object,
-        className?: boolean,
+        className?: string;
         children?: ReactNode
     }
 
-    export const ContextMenu: React.FunctionComponent<ContextMenu>;
-    export const ContextMenuItem: React.FunctionComponent<ContextMenuItem>;
-    export const ContextMenuTrigger: React.FunctionComponent<ContextMenuTrigger>;
-    export const Submenu: React.FunctionComponent<Submenu>;
+    export const ContextMenu: React.FunctionComponent<ContextMenuProps>;
+    export const ContextMenuItem: React.FunctionComponent<ContextMenuItemProps>;
+    export const ContextMenuTrigger: React.FunctionComponent<ContextMenuTriggerProps>;
 }

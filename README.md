@@ -1,8 +1,8 @@
 [![npm version](https://badge.fury.io/js/@kongkiat%2Freact-context-menu.svg)](https://badge.fury.io/js/@kongkiat%2Freact-context-menu)
 
 ### Note:
-
-`react-context-menu` Supports React `16.8` and above versions because this plugin solely uses React Hooks.
+ - `@kongkiat/react-context-menu` Developed from [react-contextmenu](https://www.npmjs.com/package/react-contextmenu)
+ - Supports React `16.8` and above versions because this plugin solely uses React Hooks.
 
 # react-context-menu
 
@@ -14,11 +14,7 @@ Context menu plugin for React.
 - [Installation](#installation)
 - [Sample Usage](#sample-usage)
 - [Full Example Usage](#full-example-usage)
-- [Live Demo](#live-demo)
-- [Example Code](#example-code)
 - [APIs](#apis)
-- [Styling](#styling)
-- [Contributions](#contributions-pray)
 - [LICENSE](#license)
 
 ## Browser Support
@@ -54,19 +50,34 @@ function App() {
                     Right Click On Me
                 </div>
             </ContextMenuTrigger>
-            <ContextMenu id="context-menu-1">
-                <ContextMenuItem>Menu Item 1</ContextMenuItem>
+            <ContextMenu
+                id="context-menu-1"
+                appendTo="body"
+                animation="zoom"
+                hideOnLeave={false}
+                preventHideOnScroll={true}
+                preventHideOnResize={true}
+                attributes={{
+                    'aria-label': 'Some text',
+                    'aria-labelledby': 'Some text'
+                }}
+                className="my-context-menu"
+                onMouseLeave={() => console.log('Mouse left')}
+                onShow={(e) => console.log('is visible!', e)}
+                onHide={(e) => console.log('is hidden!', e)}
+            >
+                <ContextMenuItem><span>Menu Item 1</span></ContextMenuItem>
                 <ContextMenuItem>Menu Item 2</ContextMenuItem>
                 <ContextMenuItem>Menu Item 3</ContextMenuItem>
                 <ContextMenuItem>Menu Item 4</ContextMenuItem>
-                <Submenu element={
+                <ContextMenuItem.Submenu element={
                     <span>Submenu Item</span>
                 }>
                     <ContextMenuItem>Sub Menu Item 1</ContextMenuItem>
                     <ContextMenuItem>Sub Menu Item 2</ContextMenuItem>
                     <ContextMenuItem>Sub Menu Item 3</ContextMenuItem>
                     <ContextMenuItem>Sub Menu Item 4</ContextMenuItem>
-                </Submenu>
+                </ContextMenuItem.Submenu>
             </ContextMenu>
         </div>
     );
@@ -76,6 +87,21 @@ export default App;
 ```
 
 ## Full example usage
+
+```tsx
+<ContextMenuTrigger
+    id="my-contextmenu"
+    disable={false}
+    disableWhileShiftPressed={true}
+    attributes={{
+        'aria-label': 'Some text',
+        'aria-labelledby': 'Some text'
+    }}
+    className="my-context-menu-trigger"
+>
+    {children}
+</ContextMenuTrigger>
+```
 
 ```tsx
 <ContextMenu
@@ -106,42 +132,75 @@ export default App;
     }}
     className="my-context-menu-item"
     onClick={() => console.log("is clicked!")}
-/>
+>
+    {children}
+</ContextMenuItem>
 ```
 
 ```tsx
-<ContextMenuTrigger
-    id="my-contextmenu"
-    disable={false}
-    disableWhileShiftPressed={true}
-    attributes={{
-        'aria-label': 'Some text',
-        'aria-labelledby': 'Some text'
-    }}
-    className="my-context-menu-trigger"
-/>
-```
-
-```tsx
-<Submenu
+<ContextMenuItem.Submenu
     element={<span>Submenu Item</span>}
     attributes={{
         'aria-label': 'Some text',
         'aria-labelledby': 'Some text'
     }}
     className="my-context-menu-submenu"
-/>
+>
+    {children}
+</ContextMenuItem.Submenu>
 ```
 
-## Live Demo
-
-Live demo is unavailable [here]()
-
-## Example Code
-
-Example code is available [here](https://github.com/KONGKIAT888/react-context-menu)
-
 ## APIs
+#### `<ContextMenuTrigger />`
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th width="10%">Name</th>
+      <th width="5%">Type</th>
+      <th width="30%">Options</th>
+      <th width="55%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>id</td>
+      <td>String</td>
+      <td>Should be a string.</td>
+      <td>`ContextMenu` and `ContextMenuTrigger` id should match.</td>
+    </tr>
+    <tr>
+      <td>attributes</td>
+      <td>Object</td>
+      <td>-</td>
+      <td>Add additional attributes to the element.</td>
+    </tr>
+    <tr>
+      <td>disable</td>
+      <td>true / false. <strong>Default: false</strong></td>
+      <td>false</td>
+      <td>Disable contextmenu and open browser default contextmenu.</td>
+    </tr>
+    <tr>
+      <td>className</td>
+      <td>String</td>
+      <td>-</td>
+      <td>Additional classes.</td>
+    </tr>
+    <tr>
+      <td>children</td>
+      <td>ReactNode</td>
+      <td>-</td>
+      <td>The content inside the trigger element.</td>
+    </tr>
+    <tr>
+      <td>disableWhileShiftPressed</td>
+      <td>Boolean</td>
+      <td>true / false. <strong>Default: false</strong></td>
+      <td>Open browser default contextmenu if shift pressed while right click on trigger element.</td>
+    </tr>
+  </tbody>
+</table>
 
 #### `<ContextMenu />`
 
@@ -221,6 +280,12 @@ Example code is available [here](https://github.com/KONGKIAT888/react-context-me
       <td>() => {}</td>
       <td>Invoke onMouseLeave on blur or mouseOut.</td>
     </tr>
+    <tr>
+      <td>children</td>
+      <td>ReactNode</td>
+      <td>-</td>
+      <td>The content inside the context menu.
+    </tr>
   </tbody>
 </table>
 
@@ -272,49 +337,15 @@ Example code is available [here](https://github.com/KONGKIAT888/react-context-me
       <td>() => {}</td>
       <td>Fire onClick event.</td>
     </tr>
+    <tr>
+      <td>children</td>
+      <td>ReactNode</td>
+      <td>-</td>
+      <td>The content inside the menu item.</td>
   </tbody>
 </table>
 
-#### `<ContextMenuTrigger />`
-
-<table class="table table-bordered table-striped">
-  <thead>
-    <tr>
-      <th width="10%">Name</th>
-      <th width="5%">Type</th>
-      <th width="30%">Options</th>
-      <th width="55%">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>id</td>
-      <td>String</td>
-      <td>Should be a string.</td>
-      <td>`ContextMenu` and `ContextMenuTrigger` id should match.</td>
-    </tr>
-    <tr>
-      <td>attributes</td>
-      <td>Object</td>
-      <td>-</td>
-      <td>Add additional attributes to the element.</td>
-    </tr>
-    <tr>
-      <td>disable</td>
-      <td>true / false. <strong>Default: false</strong></td>
-      <td>false</td>
-      <td>Disable contextmenu and open browser default contextmenu.</td>
-    </tr>
-    <tr>
-      <td>className</td>
-      <td>String</td>
-      <td>-</td>
-      <td>Additional classes.</td>
-    </tr>
-  </tbody>
-</table>
-
-#### `<Submenu />`
+#### `<ContextMenuItem.Submenu />`
 
 <table class="table table-bordered table-striped">
   <thead>
@@ -344,25 +375,14 @@ Example code is available [here](https://github.com/KONGKIAT888/react-context-me
       <td>-</td>
       <td>Additional classes.</td>
     </tr>
+    <tr>
+      <td>children</td>
+      <td>ReactNode</td>
+      <td>-</td>
+      <td>Submenu items.</td>
+    </tr>
   </tbody>
 </table>
-
-## Styling
-
-Styling is totally up to you. You can use CSS or even SCSS to customize the styling part. Below are the classes you can
-consider for styling
-
-- **menu-trigger** (Right click area wrapper)
-- **contextmenu** (The Context Menu)
-- **contextmenu__item** (Each Context Menu item)
-- **contextmenu__item--disabled** (Context Menu item)
-- **submenu** (Context Submenu)
-- **submenu__item** (Context Submenu item)
-
-## Contributions
-
-Any kind of contribution would be much appreciated. It could be small change in the doc or even any kind of advice. You
-can create issues if you feel any feature which is missing which solves bigger problems.
 
 ## License
 

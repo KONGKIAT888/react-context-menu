@@ -2,13 +2,13 @@ import { callHideEvent, callShowEvent } from './EventListener';
 import React, { useRef, useCallback, ReactNode } from 'react';
 import classnames from 'classnames';
 
-interface ContextMenuTriggerProps {
-    children: ReactNode;
-    id: string;
+export interface ContextMenuTriggerProps {
+    id: string,
+    attributes?: object,
+    disable?: boolean,
+    className?: string,
+    children?: ReactNode
     disableWhileShiftPressed?: boolean;
-    attributes?: React.HTMLAttributes<HTMLDivElement>;
-    disable?: boolean;
-    className?: string;
 }
 
 const ContextMenuTrigger: React.FC<ContextMenuTriggerProps> = ({ children, id, disableWhileShiftPressed, attributes, disable, className }) => {
