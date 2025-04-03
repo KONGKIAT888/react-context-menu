@@ -170,6 +170,12 @@ export default App;
       <td>`ContextMenu` and `ContextMenuTrigger` id should match.</td>
     </tr>
     <tr>
+      <td>as</td>
+      <td>ElementType <strong>Default: div </strong></td>
+      <td>-</td>
+      <td>`ContextMenu` and `ContextMenuTrigger` id should match.</td>
+    </tr>
+    <tr>
       <td>attributes</td>
       <td>Object</td>
       <td>-</td>
