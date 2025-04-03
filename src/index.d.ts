@@ -1,7 +1,8 @@
-import { HTMLAttributes, ReactNode } from 'react';
+import { ElementType, HTMLAttributes, ReactNode } from 'react';
 
 declare module '@kongkiat/react-context-menu' {
     import * as React from 'react';
+
     export interface AnimateComponentProps {
         children: ReactNode;
         isVisible: boolean;
@@ -36,6 +37,7 @@ declare module '@kongkiat/react-context-menu' {
 
     export interface ContextMenuTriggerProps {
         id: string,
+        as?: ElementType,
         attributes?: object,
         disable?: boolean,
         className?: string,

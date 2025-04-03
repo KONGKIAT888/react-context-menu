@@ -2,9 +2,9 @@ import { callHideEvent, callShowEvent } from './EventListener';
 import React, { useRef, useCallback, ReactNode, ElementType } from 'react';
 import classnames from 'classnames';
 
-export interface ContextMenuTriggerProps<T extends ElementType = 'div'>  {
+export interface ContextMenuTriggerProps {
     id: string,
-    as?: T;
+    as?: ElementType;
     attributes?: object,
     disable?: boolean,
     className?: string,
@@ -15,7 +15,7 @@ export interface ContextMenuTriggerProps<T extends ElementType = 'div'>  {
 const ContextMenuTrigger: React.FC<ContextMenuTriggerProps> = ({ as: Component = 'div', children, id, disableWhileShiftPressed, attributes, disable, className }) => {
     const menuTrigger = useRef<HTMLDivElement>(null);
 
-    const handleContextMenu = useCallback((e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const handleContextMenu = useCallback((e: React.MouseEvent<ElementType, MouseEvent>) => {
         if (disable) return;
         if (disableWhileShiftPressed && e.nativeEvent.shiftKey) {
             callHideEvent(id);
@@ -41,7 +41,7 @@ const ContextMenuTrigger: React.FC<ContextMenuTriggerProps> = ({ as: Component =
             className={classnames('menu-trigger', className)}
             ref={menuTrigger}
             {...attributes}
-            onContextMenu={(e) => handleContextMenu(e)}
+            onContextMenu={(e: React.MouseEvent<ElementType, MouseEvent>) => handleContextMenu(e)}
         >
             {children}
         </Component>
