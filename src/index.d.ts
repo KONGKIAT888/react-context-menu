@@ -51,6 +51,6 @@ declare module '@kongkiat/react-context-menu' {
     }
 
     export const ContextMenu: React.FunctionComponent<ContextMenuProps>;
-    export const ContextMenuItem: React.FunctionComponent<ContextMenuItemProps>;
+    export const ContextMenuItem: React.FunctionComponent<ContextMenuItemProps> & { Submenu: React.FunctionComponent<SubmenuProps> };
     export const ContextMenuTrigger: React.FunctionComponent<ContextMenuTriggerProps>;
 }

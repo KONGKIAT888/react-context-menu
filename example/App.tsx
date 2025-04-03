@@ -1,8 +1,8 @@
 import React from 'react';
-import ContextMenuItem from 'src/ContextMenuItem';
-import ContextMenuTrigger from 'src/ContextMenuTrigger';
-import ContextMenu from 'src/ContextMenu';
-import 'src/style.scss';
+import ContextMenuItem from '../src/ContextMenuItem';
+import ContextMenuTrigger from '../src/ContextMenuTrigger';
+import ContextMenu from '../src/ContextMenu';
+import '../src/style.scss';
 
 function App() {
 
